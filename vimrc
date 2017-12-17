@@ -210,8 +210,10 @@ let g:netrw_altv=1
 let g:netrw_liststyle=3
 set scrolloff=2
 map <F2> <esc>:NERDTreeToggle<CR>
-colorscheme wombat
-set bg=dark
+" colorscheme wombat
+colorscheme solarized
+" set bg=dark
+set bg=light
 set nowrap
 set nu
 autocmd QuickFixCmdPost [^l]* nested cwindow
