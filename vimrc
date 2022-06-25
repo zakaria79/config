@@ -7,10 +7,18 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
+Plug 'tpope/vim-dispatch'             "| Optional
+Plug 'tpope/vim-projectionist'        "|
+Plug 'noahfrederick/vim-composer'     "|
+Plug 'noahfrederick/vim-laravel'
+Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
 
 colorscheme dracula
 
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_winsize = 20
 
 set mousemodel=popup
 set cursorline
@@ -272,3 +280,14 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
+
+function! MyFoldFunction()
+    let line = getline(v:foldstart)
+    let sub = substitute(line,'/\*\|\*/\|^\s+', '', 'g')
+    let lines = v:foldend - v:foldstart + 1
+    return v:folddashes.sub.'...'.lines.' Lines...'.getline(v:foldend)
+endfunction
+set foldmethod=syntax
+set foldtext=MyFoldFunction()
+
+autocmd FileType javascript,yml,yaml setlocal shiftwidth=2 tabstop=2 softtabstop=2
